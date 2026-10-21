@@ -16,11 +16,11 @@ body{background:var(--bg);color:var(--ink);font:15px/1.55 Figtree,sans-serif;min
 h1,h2,h3,.v,.brand{font-family:"Bricolage Grotesque",sans-serif}
 button,input,select{font:inherit;color:inherit}button{cursor:pointer}
 :focus-visible{outline:3px solid var(--sky);outline-offset:2px}
-header.hd{background:var(--card);border-bottom:1px solid var(--bd);position:sticky;top:0;z-index:20;padding:12px max(28px,env(safe-area-inset-right)) 0 max(28px,env(safe-area-inset-left));padding-top:max(12px,env(safe-area-inset-top))}
+header.hd{background:var(--card);border-bottom:1px solid var(--bd);padding:14px max(28px,env(safe-area-inset-right)) 14px max(28px,env(safe-area-inset-left));padding-top:max(14px,env(safe-area-inset-top))}
 .hr{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
 .brand{font-size:26px;font-weight:800;color:var(--pri);letter-spacing:-1px;line-height:1.1}
 .bw{display:flex;align-items:center;gap:14px;text-decoration:none;color:inherit;min-width:0}
-.logo{height:108px;width:auto;display:block;flex:none}
+.logo{height:150px;width:auto;max-width:44vw;object-fit:contain;display:block;flex:none}
 .slogan{margin-top:3px;font-size:14px;font-weight:600;color:var(--mu);line-height:1.3}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .h2o{display:inline-block;font-family:"Bricolage Grotesque",sans-serif;font-weight:800;letter-spacing:.5px;background:linear-gradient(90deg,var(--sky),#2fb5c9 55%,var(--pri));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:var(--sky);transform-origin:50% 80%;animation:wave 3.2s ease-in-out infinite}
@@ -28,7 +28,7 @@ header.hd{background:var(--card);border-bottom:1px solid var(--bd);position:stic
 .h2o .dr{display:inline-block;font-size:.95em;margin-left:2px;-webkit-text-fill-color:initial;animation:drip 3.2s ease-in infinite}
 @keyframes wave{0%,100%{transform:rotate(0)}25%{transform:rotate(-4deg) translateY(-1px)}75%{transform:rotate(4deg) translateY(1px)}}
 @keyframes drip{0%,55%{transform:translateY(-2px) scale(1);opacity:1}85%{transform:translateY(7px) scale(.8);opacity:.2}100%{transform:translateY(-2px) scale(1);opacity:1}}
-.tabs{display:flex;gap:4px;overflow-x:auto;margin-top:8px}
+.tabs{display:flex;gap:4px;overflow-x:auto;position:sticky;top:0;z-index:20;background:var(--card);border-bottom:1px solid var(--bd);padding:0 max(28px,env(safe-area-inset-left))}
 .tabs button{border:0;background:none;padding:12px 16px;font-weight:600;color:var(--mu);border-bottom:3px solid transparent;white-space:nowrap}
 .tabs button:hover{color:var(--ink)}
 .tabs button[aria-current]{color:var(--pri);border-color:var(--pri)}
@@ -42,9 +42,14 @@ h1{font-size:clamp(28px,3.4vw,40px);letter-spacing:-1.2px;font-weight:800;line-h
 .sel,.inp{background:#fff;border:1.5px solid var(--bd);border-radius:12px;padding:10px 14px;min-height:44px}
 .inp{width:100%}
 .card{background:var(--card);border:1px solid var(--bd);border-radius:var(--r);padding:24px;min-width:0}
-.hero{display:grid;grid-template-columns:1.5fr 1fr;gap:28px;background:var(--pri);color:#fff;border-radius:24px;padding:34px;margin-bottom:22px}
+.hero{display:grid;grid-template-columns:1fr;gap:28px;background:var(--pri);color:#fff;border-radius:24px;padding:34px;margin-bottom:22px}
 .hero h2{font-size:clamp(22px,2.6vw,32px);line-height:1.2;letter-spacing:-.7px;font-weight:800;max-width:24ch}
 .hero p{color:#cfe7de;margin-top:12px;max-width:50ch}
+.hero .eb{font-weight:700;color:#cfe7de;font-size:15px}
+.hero .big{font:800 clamp(56px,8vw,104px)/1 "Bricolage Grotesque",sans-serif;letter-spacing:-3px;margin:6px 0 22px;color:#fff}
+.hero .big small{font-size:.4em;letter-spacing:-1px;color:var(--sun);margin-left:8px}
+.hero .eq{color:#cfe7de;margin:0 0 20px}
+.hero h2.s{font-size:clamp(17px,1.8vw,21px);max-width:40ch;margin-bottom:6px}
 .hero .lv{background:rgba(255,255,255,.12);border-radius:18px;padding:22px;display:flex;flex-direction:column;justify-content:space-between;gap:14px}
 .hero .lv span{color:#cfe7de;font-size:13px}.hero .lv b{font:800 26px/1.15 "Bricolage Grotesque",sans-serif}
 .kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-bottom:22px}
@@ -92,7 +97,8 @@ th{background:var(--bg);color:var(--mu);font-weight:600;font-size:14px}tr:last-c
 .toast.show{opacity:1;transform:none}
 @media(max-width:1100px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.hero{grid-template-columns:1fr}}
 @media(max-width:900px){.g2,.rg{grid-template-columns:1fr}.main{padding-top:22px}}
-@media(max-width:600px){.logo{height:38px}.brand{font-size:22px}.slogan{font-size:12.5px}header.hd{padding-left:16px;padding-right:16px}.main{padding-left:16px;padding-right:16px}.kpis{gap:10px}.kpi{padding:16px}.ut{grid-template-columns:1fr}.v{font-size:22px}.card{padding:18px}.hero{padding:24px}.sl{font-size:11px}}
+@media(max-width:900px){.logo{height:104px}}
+@media(max-width:600px){.tabs{padding:0 12px}.logo{height:76px}.brand{font-size:22px}.slogan{font-size:12.5px}header.hd{padding-left:16px;padding-right:16px}.main{padding-left:16px;padding-right:16px}.kpis{gap:10px}.kpi{padding:16px}.ut{grid-template-columns:1fr}.v{font-size:22px}.card{padding:18px}.hero{padding:24px}.sl{font-size:11px}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important}.h2o,.h2o .dr{animation:none!important}}
 </style>
 </head>
@@ -103,8 +109,8 @@ th{background:var(--bg);color:var(--mu);font-weight:600;font-size:14px}tr:last-c
 <div><div class="brand">O’ptimeau</div>
 <p class="slogan"><span class="sr">l’innovation qui sauve les euros !</span><span aria-hidden="true">l’innovation qui sauve les eur’<span class="h2o">H<sub>2</sub>O<span class="dr">💧</span></span> !</span></p></div></a>
 <select class="sel" id="period" aria-label="Période"></select></div>
-<nav class="tabs" id="nav" aria-label="Navigation principale"></nav>
 </header>
+<nav class="tabs" id="nav" aria-label="Navigation principale"></nav>
 <main class="main">
 <h1 id="h1" tabindex="-1"></h1><p class="sub" id="sub"></p>
 <section class="page" id="p-dashboard"></section>
@@ -145,6 +151,7 @@ if(!PER[S.period])S.period="oct";
 const CH={};
 const open=()=>A.filter(a=>!S.done.includes(a.id));
 const act=()=>ACT.map(v=>Math.round(v*PER[S.period].f));
+const K=12480/sum(ACT),saved=()=>Math.max(0,Math.round((sum(REF)-sum(act()))*K));
 const gap=()=>Math.round((sum(act())/sum(REF)-1)*100);
 const sg=v=>(v>0?"+":"")+v+" %";
 const lvc=l=>l==="Élevée"?"w":"m";
@@ -160,10 +167,9 @@ const kpi=(l,v,f,c="")=>`<article class="card kpi"><p class="l">${l}</p><p class
 const notice=t=>`<p class="note">${t}</p>`;
 /* Pages */
 function dash(){
-  const o=open(),pot=sum(o.map(a=>a.save)),ok=METERS.filter(m=>m[3]).length,P=PER[S.period],e=env();
+  const o=open(),pot=sum(o.map(a=>a.save)),ok=METERS.filter(m=>m[3]).length,P=PER[S.period],e=env(),sv=saved();
   $("#p-dashboard").innerHTML=`
-  <div class="hero"><div><h2>${o.length?`${o.length} anomalie${o.length>1?"s":""} à traiter, jusqu’à ${eur(pot)} d’économies par an`:"Aucune anomalie ouverte : la consommation suit la référence"}</h2><p>Les compteurs déjà en place alimentent le suivi. Chaque action traitée améliore aussi l’image environnementale de l’entreprise.</p><p style="margin-top:20px"><button class="btn l" data-go="anomalies">Voir les anomalies</button></p></div>
-  <div class="lv"><span>Image environnementale</span><b>${LV[e.idx][0]}</b><span>Score illustratif : ${e.score} sur 100</span><button class="btn l" data-go="env">Voir le détail</button></div></div>
+  <div class="hero"><div><span class="eb">Eau économisée ce mois-ci</span><div class="big">${fmt(sv)}<small>m³</small></div>${sv?"":`<p class="eq">Aucune économie sur cette période : la consommation dépasse la référence.</p>`}<h2 class="s">${o.length?`${o.length} anomalie${o.length>1?"s":""} à traiter, jusqu’à ${eur(pot)} d’économies par an`:"Aucune anomalie ouverte : la consommation suit la référence"}</h2><p>Les compteurs déjà en place alimentent le suivi.</p><p style="margin-top:20px"><button class="btn l" data-go="anomalies">Voir les anomalies</button></p></div></div>
   <div class="kpis">
     ${kpi("Consommation du mois",fmt(Math.round(12480*P.f))+" m³",sg(e.g)+" vs référence",e.g<=0?"":"w")}
     ${kpi("Économies estimées",eur(P.s),"Depuis le début de l’année")}
@@ -199,8 +205,7 @@ function envPage(){
   const e=env(),L=LV[e.idx],nx=LV[e.idx+1],need=(e.idx+1)*20-e.score;
   const rows=[["perf","Consommation d’eau face à la référence ("+sg(e.g)+")",30],["resp","Part des anomalies traitées",20]];
   const miss=CRIT.filter(c=>!S.env[c[0]]).sort((a,b)=>b[2]-a[2]);
-  $("#p-env").innerHTML=`${notice("Indicateur interne et illustratif construit pour cette démonstration. Ce n’est pas une notation officielle ni une mesure réelle de l’opinion publique.")}
-  <article class="card" style="margin-bottom:20px"><h2 class="t">Où se situe l’entreprise ?</h2><p class="d">De « mal vue par la société » à « exemple sur les enjeux environnementaux ».</p>
+  $("#p-env").innerHTML=`  <article class="card" style="margin-bottom:20px"><h2 class="t">Où se situe l’entreprise ?</h2><p class="d">De « mal vue par la société » à « exemple sur les enjeux environnementaux ».</p>
   <div class="scale" role="img" aria-label="Échelle d’image environnementale : niveau ${L[0]}, score ${e.score} sur 100">${LV.map(l=>`<i style="background:${l[2]}"></i>`).join("")}<div class="mk" style="left:${Math.max(3,Math.min(97,e.score))}%">${e.score}</div></div>
   <div class="sl">${LV.map((l,i)=>`<span class="${i===e.idx?"on":""}">${l[0]}</span>`).join("")}</div>
   <div style="margin-top:26px"><h3 style="font-size:24px;color:${L[2]===""?"":"var(--ink)"}">${L[0]}</h3><p class="d" style="margin-bottom:0;max-width:70ch">${L[1]}</p></div></article>
@@ -276,7 +281,7 @@ function exp(k){
   if(k==="consumption")csv(k,[...hd("Consommation"),...sites]);
   else if(k==="savings")csv(k,[...hd("Simulation d’économies"),...sv]);
   else if(k==="anomalies")csv(k,[...hd("Anomalies"),...an]);
-  else csv("rapport_general",[...hd("Rapport général"),["Indicateur","Valeur"],["Consommation du mois (m3)",Math.round(12480*PER[S.period].f)],["Économies cumulées (EUR)",PER[S.period].s],["Anomalies ouvertes",open().length],["Compteurs connectés",METERS.filter(m=>m[3]).length+" / "+METERS.length],["Image environnementale (illustratif)",LV[e.idx][0]+", "+e.score+"/100"],[],...sites,[],...an]);
+  else csv("rapport_general",[...hd("Rapport général"),["Indicateur","Valeur"],["Consommation du mois (m3)",Math.round(12480*PER[S.period].f)],["Économies cumulées (EUR)",PER[S.period].s],["Eau économisée vs référence (m3)",saved()],["Anomalies ouvertes",open().length],["Compteurs connectés",METERS.filter(m=>m[3]).length+" / "+METERS.length],["Image environnementale (illustratif)",LV[e.idx][0]+", "+e.score+"/100"],[],...sites,[],...an]);
 }
 /* Navigation et rendu */
 function nav(){
