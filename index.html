@@ -18,7 +18,16 @@ button,input,select{font:inherit;color:inherit}button{cursor:pointer}
 :focus-visible{outline:3px solid var(--sky);outline-offset:2px}
 header.hd{background:var(--card);border-bottom:1px solid var(--bd);position:sticky;top:0;z-index:20;padding:12px max(28px,env(safe-area-inset-right)) 0 max(28px,env(safe-area-inset-left));padding-top:max(12px,env(safe-area-inset-top))}
 .hr{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
-.brand{font-size:26px;font-weight:800;color:var(--pri);letter-spacing:-1px}
+.brand{font-size:26px;font-weight:800;color:var(--pri);letter-spacing:-1px;line-height:1.1}
+.bw{display:flex;align-items:center;gap:14px;text-decoration:none;color:inherit;min-width:0}
+.logo{height:48px;width:auto;display:block;flex:none}
+.slogan{margin-top:3px;font-size:14px;font-weight:600;color:var(--mu);line-height:1.3}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.h2o{display:inline-block;font-family:"Bricolage Grotesque",sans-serif;font-weight:800;letter-spacing:.5px;background:linear-gradient(90deg,var(--sky),#2fb5c9 55%,var(--pri));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:var(--sky);transform-origin:50% 80%;animation:wave 3.2s ease-in-out infinite}
+.h2o sub{font-size:.7em;vertical-align:baseline;position:relative;top:.28em;margin:0 1px;-webkit-text-fill-color:var(--sun);color:var(--sun)}
+.h2o .dr{display:inline-block;font-size:.95em;margin-left:2px;-webkit-text-fill-color:initial;animation:drip 3.2s ease-in infinite}
+@keyframes wave{0%,100%{transform:rotate(0)}25%{transform:rotate(-4deg) translateY(-1px)}75%{transform:rotate(4deg) translateY(1px)}}
+@keyframes drip{0%,55%{transform:translateY(-2px) scale(1);opacity:1}85%{transform:translateY(7px) scale(.8);opacity:.2}100%{transform:translateY(-2px) scale(1);opacity:1}}
 .tabs{display:flex;gap:4px;overflow-x:auto;margin-top:8px}
 .tabs button{border:0;background:none;padding:12px 16px;font-weight:600;color:var(--mu);border-bottom:3px solid transparent;white-space:nowrap}
 .tabs button:hover{color:var(--ink)}
@@ -83,13 +92,16 @@ th{background:var(--bg);color:var(--mu);font-weight:600;font-size:14px}tr:last-c
 .toast.show{opacity:1;transform:none}
 @media(max-width:1100px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.hero{grid-template-columns:1fr}}
 @media(max-width:900px){.g2,.rg{grid-template-columns:1fr}.main{padding-top:22px}}
-@media(max-width:600px){header.hd{padding-left:16px;padding-right:16px}.main{padding-left:16px;padding-right:16px}.kpis{gap:10px}.kpi{padding:16px}.ut{grid-template-columns:1fr}.v{font-size:22px}.card{padding:18px}.hero{padding:24px}.sl{font-size:11px}}
-@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+@media(max-width:600px){.logo{height:38px}.brand{font-size:22px}.slogan{font-size:12.5px}header.hd{padding-left:16px;padding-right:16px}.main{padding-left:16px;padding-right:16px}.kpis{gap:10px}.kpi{padding:16px}.ut{grid-template-columns:1fr}.v{font-size:22px}.card{padding:18px}.hero{padding:24px}.sl{font-size:11px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}.h2o,.h2o .dr{animation:none!important}}
 </style>
 </head>
 <body>
 <header class="hd">
-<div class="hr"><div class="brand">O’ptimeau</div>
+<div class="hr"><a class="bw" href="#dashboard" aria-label="O’ptimeau, retour au tableau de bord">
+<img class="logo" src="logo.png" alt="Logo O’ptimeau" onerror="this.style.display='none'">
+<div><div class="brand">O’ptimeau</div>
+<p class="slogan"><span class="sr">O’ptimeau, l’innovation qui sauve les euros !</span><span aria-hidden="true">O’ptimeau, l’innovation qui sauve les eur’<span class="h2o">H<sub>2</sub>O<span class="dr">💧</span></span> !</span></p></div></a>
 <select class="sel" id="period" aria-label="Période"></select></div>
 <nav class="tabs" id="nav" aria-label="Navigation principale"></nav>
 </header>
@@ -110,7 +122,6 @@ const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"
 const nf=new Intl.NumberFormat("fr-FR",{maximumFractionDigits:1}),ef=new Intl.NumberFormat("fr-FR",{style:"currency",currency:"EUR",maximumFractionDigits:0});
 const fmt=v=>nf.format(v),eur=v=>ef.format(v),sum=a=>a.reduce((s,v)=>s+v,0);
 const store={get(k,d){try{return JSON.parse(localStorage.getItem("optimeau2:"+k))??d}catch{return d}},set(k,v){try{localStorage.setItem("optimeau2:"+k,JSON.stringify(v))}catch{}}};
-
 /* Données fictives */
 const PER={oct:{l:"Octobre 2026",f:1,s:18400},sep:{l:"Septembre 2026",f:1.06,s:16200},aug:{l:"Août 2026",f:1.13,s:13900}};
 const LAB=["1 oct.","3 oct.","5 oct.","7 oct.","9 oct.","11 oct.","13 oct.","15 oct.","17 oct.","19 oct.","21 oct.","23 oct.","25 oct.","27 oct.","30 oct."];
@@ -128,7 +139,6 @@ const LV=[
  ["Engagée","Des objectifs et des résultats visibles montrent une vraie démarche de réduction.","#5ba37f"],
  ["Exemple sur les enjeux environnementaux","L’entreprise est citée en référence : résultats mesurés, transparence et amélioration continue.","#0b5d4b"]];
 const CRIT=[["goal","Objectif de réduction de l’eau publié",15],["report","Rapport environnemental publié chaque année",15],["cert","Certification environnementale (par exemple ISO 14001)",10],["team","Équipes sensibilisées à l’économie d’eau",10]];
-
 /* État */
 const S={period:store.get("period","oct"),done:store.get("done",[]),sim:store.get("sim",{v:150000,p:4,r:10,c:5000}),env:store.get("env",{goal:true,report:false,cert:false,team:true}),page:"dashboard",filter:"all"};
 if(!PER[S.period])S.period="oct";
@@ -144,12 +154,10 @@ function env(){
   const score=sum(Object.values(pts)),idx=Math.min(4,Math.floor(score/20));
   return{pts,score,idx,g};
 }
-
 function toast(m){const t=$("#toast");t.textContent=m;t.classList.add("show");clearTimeout(toast.t);toast.t=setTimeout(()=>t.classList.remove("show"),3000)}
 function chart(id,cfg){CH[id]?.destroy();delete CH[id];const c=$("#"+id);if(c&&window.Chart)CH[id]=new Chart(c,cfg)}
 const kpi=(l,v,f,c="")=>`<article class="card kpi"><p class="l">${l}</p><p class="v">${v}</p><span class="tag ${c}">${f}</span></article>`;
 const notice=t=>`<p class="note">${t}</p>`;
-
 /* Pages */
 function dash(){
   const o=open(),pot=sum(o.map(a=>a.save)),ok=METERS.filter(m=>m[3]).length,P=PER[S.period],e=env();
@@ -252,7 +260,6 @@ function reports(){
   $("#p-reports").innerHTML=`${notice("Les rapports utilisent les données fictives du prototype. Ce ne sont pas des rapports d’audit.")}<div class="rg">${r.map(x=>`<article class="rc"><h2 class="t">${x[1]}</h2><p>${x[2]}</p><button class="btn" data-exp="${x[0]}">Télécharger en CSV</button></article>`).join("")}</div>
   <article class="card" style="margin-top:20px"><h2 class="t">Rapport général</h2><p class="d">Un seul fichier CSV regroupant les principaux indicateurs, dont l’image environnementale.</p><button class="btn" data-exp="general">Télécharger le rapport général</button></article>`;
 }
-
 /* Export CSV */
 function csv(name,rows){
   const t=rows.map(r=>r.map(v=>'"'+String(v??"").replace(/"/g,'""')+'"').join(";")).join("\r\n");
@@ -271,7 +278,6 @@ function exp(k){
   else if(k==="anomalies")csv(k,[...hd("Anomalies"),...an]);
   else csv("rapport_general",[...hd("Rapport général"),["Indicateur","Valeur"],["Consommation du mois (m3)",Math.round(12480*PER[S.period].f)],["Économies cumulées (EUR)",PER[S.period].s],["Anomalies ouvertes",open().length],["Compteurs connectés",METERS.filter(m=>m[3]).length+" / "+METERS.length],["Image environnementale (illustratif)",LV[e.idx][0]+", "+e.score+"/100"],[],...sites,[],...an]);
 }
-
 /* Navigation et rendu */
 function nav(){
   $("#nav").innerHTML=NAV.map(n=>`<button data-p="${n[0]}">${n[1]}${n[0]==="anomalies"&&open().length?` (${open().length})`:""}</button>`).join("");
@@ -289,7 +295,6 @@ function go(p,focus){
   if(focus){window.scrollTo({top:0});$("#h1").focus({preventScroll:true})}
 }
 function renderAll(){dash();envPage();rows("sites",SITES,siteRow);rows("meters",METERS,meterRow);anom();reports();nav();go(S.page)}
-
 /* Événements */
 document.addEventListener("click",e=>{
   const t=e.target.closest("[data-p],[data-go],[data-tg],[data-exp],#s-reset");if(!t)return;
@@ -317,7 +322,6 @@ $("#period").innerHTML=Object.entries(PER).map(([k,v])=>`<option value="${k}">${
 $("#period").value=S.period;
 $("#period").addEventListener("change",e=>{S.period=e.target.value;store.set("period",S.period);dash();envPage();go(S.page);toast("Période : "+PER[S.period].l+". Données fictives.")});
 window.addEventListener("popstate",()=>go(location.hash.slice(1)));
-
 function start(){
   Chart.defaults.color="#4b6361";Chart.defaults.font.family="Figtree, sans-serif";Chart.defaults.font.size=12;
   table("sites","Vue des sites industriels","Consommation et écart de référence par site.",["Site","Localisation","Consommation","Écart","Statut"],"Rechercher un site");
