@@ -3,126 +3,113 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#0b1928">
-<meta name="description" content="O’ptimeau : suivi et optimisation de la consommation d’eau des entreprises.">
+<meta name="theme-color" content="#0b5d4b">
 <title>O’ptimeau | Gestion intelligente de l’eau</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" defer></script>
 <style>
-:root{--bg:#0b1928;--sb:#112a40;--card:#142d43;--in:#0e2234;--bd:#28445b;--tx:#e6eef6;--mu:#9aafc2;--ac:#b8f442;--acbg:#24432e;--bl:#5d8cff;--or:#ffab91;--orbg:#542e27;--ye:#f5d778;--yebg:#423b27;--r:20px}
+:root{--bg:#eef4f1;--card:#fff;--ink:#0c2b2a;--mu:#4b6361;--pri:#0b5d4b;--pri2:#e1f0ea;--sun:#f2b33d;--sunbg:#fff1d0;--sunx:#7a5200;--co:#c2410c;--cobg:#ffe6da;--sky:#1f7fb5;--bd:#d3e0db;--r:16px}
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--bg);color:var(--tx);font:14px/1.5 Inter,sans-serif;min-height:100vh}
-h1,h2,.v,.brand{font-family:"Space Grotesk",sans-serif}
-button,input,select{font:inherit;color:inherit}
-button{cursor:pointer}
-:focus-visible{outline:2px solid var(--ac);outline-offset:3px}
-.app{display:flex;min-height:100vh}
-.sb{width:250px;flex-shrink:0;background:var(--sb);border-right:1px solid var(--bd);padding:max(28px,env(safe-area-inset-top)) 16px 24px;display:flex;flex-direction:column;position:sticky;top:0;height:100vh}
-.brand{color:var(--ac);font-size:27px;font-weight:700;letter-spacing:-1px;margin:4px 10px 36px}
-.nav button{display:flex;align-items:center;gap:12px;width:100%;border:0;background:none;text-align:left;padding:13px;border-radius:12px;margin-bottom:6px;font-weight:600;color:#d1dfeb}
-.nav button:hover{background:rgba(255,255,255,.06)}
-.nav button.on{background:var(--ac);color:#102116}
-.nav i{font-style:normal;width:20px;text-align:center}
-.nav .n{margin-left:auto;font-size:12px;background:var(--orbg);color:var(--or);border-radius:99px;padding:1px 8px}
-.nav .on .n{background:#102116;color:var(--ac)}
-.demo{margin-top:auto;font-size:12px;color:var(--mu);padding:0 6px}
-.demo b{display:block;color:var(--ac);margin-bottom:4px}
-.main{flex:1;min-width:0;padding:32px 36px max(44px,env(safe-area-inset-bottom))}
-.top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:26px}
-h1{font-size:clamp(26px,3vw,34px);letter-spacing:-1px;line-height:1.15}
-.sub{color:var(--mu);margin-top:8px}
-.acts{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
-.menu{display:none;width:44px;height:44px;border-radius:12px;border:1px solid var(--bd);background:var(--card);font-size:20px}
-.btn{border:0;background:var(--ac);color:#15210c;font-weight:700;border-radius:12px;padding:12px 18px;min-height:44px}
-.btn:hover{filter:brightness(1.08)}
-.ghost{background:var(--card);color:var(--tx);border:1px solid var(--bd);font-weight:600}
-.sel,.inp{background:var(--in);border:1px solid var(--bd);border-radius:12px;padding:11px 14px;min-height:44px}
+body{background:var(--bg);color:var(--ink);font:15px/1.55 Figtree,sans-serif;min-height:100vh}
+h1,h2,h3,.v,.brand{font-family:"Bricolage Grotesque",sans-serif}
+button,input,select{font:inherit;color:inherit}button{cursor:pointer}
+:focus-visible{outline:3px solid var(--sky);outline-offset:2px}
+header.hd{background:var(--card);border-bottom:1px solid var(--bd);position:sticky;top:0;z-index:20;padding:12px max(28px,env(safe-area-inset-right)) 0 max(28px,env(safe-area-inset-left));padding-top:max(12px,env(safe-area-inset-top))}
+.hr{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.brand{font-size:26px;font-weight:800;color:var(--pri);letter-spacing:-1px}
+.tabs{display:flex;gap:4px;overflow-x:auto;margin-top:8px}
+.tabs button{border:0;background:none;padding:12px 16px;font-weight:600;color:var(--mu);border-bottom:3px solid transparent;white-space:nowrap}
+.tabs button:hover{color:var(--ink)}
+.tabs button[aria-current]{color:var(--pri);border-color:var(--pri)}
+.main{max-width:1240px;margin:0 auto;padding:30px max(28px,env(safe-area-inset-left)) max(48px,env(safe-area-inset-bottom))}
+h1{font-size:clamp(28px,3.4vw,40px);letter-spacing:-1.2px;font-weight:800;line-height:1.1}
+.sub{color:var(--mu);margin:8px 0 24px;max-width:70ch}
+.btn{border:0;background:var(--pri);color:#fff;font-weight:700;border-radius:99px;padding:12px 22px;min-height:44px}
+.btn:hover{background:#0a4d3e}
+.btn.l{background:#fff;color:var(--pri)}.btn.l:hover{background:var(--pri2)}
+.ghost{background:none;color:var(--pri);border:2px solid var(--pri)}.ghost:hover{background:var(--pri2)}
+.sel,.inp{background:#fff;border:1.5px solid var(--bd);border-radius:12px;padding:10px 14px;min-height:44px}
 .inp{width:100%}
-.card{background:var(--card);border-radius:var(--r);padding:24px;min-width:0}
-.hero{display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;background:var(--acbg);border:1px solid rgba(184,244,66,.3);border-radius:var(--r);padding:22px 26px;margin-bottom:22px}
-.hero p{font:500 clamp(17px,2vw,22px)/1.35 "Space Grotesk",sans-serif;max-width:640px}
-.hero b{color:var(--ac)}
-.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;margin-bottom:22px}
-.kpi .l{color:var(--mu);font-size:13px}
-.v{font-size:clamp(24px,2.3vw,32px);font-weight:700;letter-spacing:-1px;margin:12px 0;white-space:nowrap}
-.tag{display:inline-block;padding:5px 11px;border-radius:99px;font-size:12px;font-weight:600;background:var(--acbg);color:var(--ac)}
-.tag.w{background:var(--orbg);color:var(--or)}.tag.m{background:var(--yebg);color:var(--ye)}.tag.n{background:#243e55;color:#c3d4e2}
-.g2{display:grid;grid-template-columns:minmax(0,1.8fr) minmax(280px,1fr);gap:22px;margin-bottom:22px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:var(--r);padding:24px;min-width:0}
+.hero{display:grid;grid-template-columns:1.5fr 1fr;gap:28px;background:var(--pri);color:#fff;border-radius:24px;padding:34px;margin-bottom:22px}
+.hero h2{font-size:clamp(22px,2.6vw,32px);line-height:1.2;letter-spacing:-.7px;font-weight:800;max-width:24ch}
+.hero p{color:#cfe7de;margin-top:12px;max-width:50ch}
+.hero .lv{background:rgba(255,255,255,.12);border-radius:18px;padding:22px;display:flex;flex-direction:column;justify-content:space-between;gap:14px}
+.hero .lv span{color:#cfe7de;font-size:13px}.hero .lv b{font:800 26px/1.15 "Bricolage Grotesque",sans-serif}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-bottom:22px}
+.kpi .l{color:var(--mu);font-size:14px}
+.v{font-size:clamp(26px,2.5vw,34px);font-weight:800;letter-spacing:-1px;margin:10px 0;white-space:nowrap}
+.tag{display:inline-block;padding:4px 12px;border-radius:99px;font-size:13px;font-weight:600;background:var(--pri2);color:var(--pri)}
+.tag.w{background:var(--cobg);color:var(--co)}.tag.m{background:var(--sunbg);color:var(--sunx)}.tag.n{background:#e8eeec;color:var(--mu)}
+.g2{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(280px,1fr);gap:20px;margin-bottom:20px}
 .g2e{grid-template-columns:repeat(2,minmax(0,1fr))}
-h2{font-size:17px;letter-spacing:-.3px}
-.d{color:var(--mu);font-size:13px;margin:6px 0 18px}
-.cv{position:relative;height:270px}.cv.s{height:210px}
-.it{display:flex;gap:12px;align-items:center;justify-content:space-between;padding:14px 0;border-top:1px solid var(--bd)}
-.it:first-of-type{border-top:0}
-.it small{display:block;color:var(--mu)}
-.sm{border:1px solid var(--bd);background:none;color:var(--mu);border-radius:10px;padding:8px 12px;min-height:36px;white-space:nowrap}
-.sm:hover{color:var(--ac);border-color:var(--ac)}
-.tw{overflow-x:auto;border:1px solid var(--bd);border-radius:14px}
+h2.t{font-size:19px;letter-spacing:-.4px}
+.d{color:var(--mu);font-size:14px;margin:6px 0 18px}
+.cv{position:relative;height:280px}.cv.s{height:200px}
+.it{display:flex;gap:14px;align-items:center;justify-content:space-between;padding:14px 0;border-top:1px solid var(--bd)}
+.it:first-of-type{border-top:0}.it small{display:block;color:var(--mu)}
+.sm{border:1.5px solid var(--bd);background:#fff;border-radius:99px;padding:8px 14px;min-height:38px;font-weight:600;color:var(--pri);white-space:nowrap}
+.sm:hover{background:var(--pri2)}
+.tw{overflow-x:auto;border:1px solid var(--bd);border-radius:12px}
 table{width:100%;border-collapse:collapse;min-width:560px}
 th,td{text-align:left;padding:14px 16px;border-bottom:1px solid var(--bd)}
-th{color:var(--mu);font-weight:600}tr:last-child td{border:0}
+th{background:var(--bg);color:var(--mu);font-weight:600;font-size:14px}tr:last-child td{border:0}
 .bar{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:16px}
-.note{background:rgba(184,244,66,.07);border:1px solid rgba(184,244,66,.25);border-radius:12px;padding:13px 16px;margin-bottom:20px;color:#cdeca0}
+.note{background:var(--sunbg);border-radius:12px;padding:13px 16px;margin-bottom:20px;color:var(--sunx)}
 .fg{margin-bottom:20px}.fg label{display:block;font-weight:600;margin-bottom:8px}.fg small{display:block;color:var(--mu);margin-top:6px}
-.res{background:var(--in);border:1px solid var(--bd);border-radius:14px;padding:18px;margin-bottom:12px}
-.res .l{color:var(--mu);font-size:13px}.res .v{color:var(--ac);margin:6px 0 0}
+.res{background:var(--bg);border-radius:14px;padding:18px;margin-bottom:12px}
+.res .l{color:var(--mu);font-size:14px}.res .v{color:var(--pri);margin:4px 0 0}
 .rg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
-.rc{background:var(--in);border:1px solid var(--bd);border-radius:14px;padding:20px;display:flex;flex-direction:column;gap:12px}
-.rc p{color:var(--mu);flex:1}
+.rc{background:var(--card);border:1px solid var(--bd);border-radius:var(--r);padding:22px;display:flex;flex-direction:column;gap:12px}.rc p{color:var(--mu);flex:1}
 .leg{display:flex;flex-direction:column;gap:10px;justify-content:center}
 .leg span{display:flex;justify-content:space-between;gap:16px}
-.leg i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:8px}
+.leg i{display:inline-block;width:12px;height:12px;border-radius:4px;margin-right:8px}
 .ut{display:grid;grid-template-columns:200px 1fr;gap:18px;align-items:center}
-.empty{color:var(--mu);text-align:center;padding:26px 0}
-.toast{position:fixed;right:24px;bottom:max(24px,env(safe-area-inset-bottom));background:#e6f8c9;color:#17230c;border-radius:12px;padding:14px 18px;font-weight:600;max-width:340px;opacity:0;transform:translateY(12px);pointer-events:none;transition:.25s;z-index:60}
+.empty{color:var(--mu);text-align:center;padding:24px 0}
+.scale{display:flex;height:22px;border-radius:99px;overflow:hidden;position:relative;margin:34px 0 10px}
+.scale i{flex:1}
+.mk{position:absolute;top:-30px;transform:translateX(-50%);text-align:center;font-weight:800;font-size:13px}
+.mk::after{content:"";display:block;width:4px;height:50px;background:var(--ink);margin:2px auto 0;border-radius:2px}
+.sl{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;font-size:13px;color:var(--mu);text-align:center}
+.sl .on{color:var(--ink);font-weight:700}
+.cr{display:grid;grid-template-columns:1fr auto;gap:6px 16px;padding:14px 0;border-top:1px solid var(--bd);align-items:center}
+.cr:first-of-type{border-top:0}
+.cr label{display:flex;gap:12px;align-items:center;cursor:pointer}
+.cr input{width:20px;height:20px;accent-color:var(--pri)}
+.pb{grid-column:1/-1;height:8px;background:var(--bg);border-radius:8px;overflow:hidden}.pb i{display:block;height:100%;background:var(--pri)}
+.toast{position:fixed;right:24px;bottom:max(24px,env(safe-area-inset-bottom));background:var(--ink);color:#fff;border-radius:12px;padding:14px 18px;font-weight:600;max-width:340px;opacity:0;transform:translateY(12px);pointer-events:none;transition:.25s;z-index:60}
 .toast.show{opacity:1;transform:none}
-.scrim{display:none}
-@media(max-width:1250px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:900px){
-.sb{position:fixed;z-index:50;left:0;top:0;transform:translateX(-100%);transition:transform .25s}
-.sb.open{transform:none}.sb.open~.scrim{display:block;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:40}
-.menu{display:block}.main{padding:22px 16px}.g2,.rg{grid-template-columns:1fr}
-}
-@media(max-width:600px){.kpis{gap:10px}.kpi{padding:16px}.ut{grid-template-columns:1fr}.v{font-size:22px}.card{padding:18px}}
-@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+@media(max-width:1100px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.hero{grid-template-columns:1fr}}
+@media(max-width:900px){.g2,.rg{grid-template-columns:1fr}.main{padding-top:22px}}
+@media(max-width:600px){header.hd{padding-left:16px;padding-right:16px}.main{padding-left:16px;padding-right:16px}.kpis{gap:10px}.kpi{padding:16px}.ut{grid-template-columns:1fr}.v{font-size:22px}.card{padding:18px}.hero{padding:24px}.sl{font-size:11px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
 <body>
-<div class="app">
-<aside class="sb" id="sb">
-<div class="brand">O<span style="color:#fff">’</span>ptimeau</div>
-<nav class="nav" id="nav" aria-label="Navigation principale"></nav>
-<div class="demo"><b>Mode démonstration</b>Les données sont fictives. Cette version illustre les fonctions envisagées.</div>
-</aside>
-<div class="scrim" id="scrim"></div>
-<main class="main">
-<header class="top">
-<div style="display:flex;gap:14px;align-items:flex-start">
-<button class="menu" id="menu" aria-label="Ouvrir le menu" aria-expanded="false">☰</button>
-<div><h1 id="h1" tabindex="-1"></h1><p class="sub" id="sub"></p></div>
-</div>
-<div class="acts">
-<select class="sel" id="period" aria-label="Période"></select>
-<button class="btn" data-exp="general">Exporter le rapport</button>
-</div>
+<header class="hd">
+<div class="hr"><div class="brand">O’ptimeau</div>
+<select class="sel" id="period" aria-label="Période"></select></div>
+<nav class="tabs" id="nav" aria-label="Navigation principale"></nav>
 </header>
+<main class="main">
+<h1 id="h1" tabindex="-1"></h1><p class="sub" id="sub"></p>
 <section class="page" id="p-dashboard"></section>
+<section class="page" id="p-env" hidden></section>
 <section class="page" id="p-sites" hidden></section>
 <section class="page" id="p-meters" hidden></section>
 <section class="page" id="p-anomalies" hidden></section>
 <section class="page" id="p-savings" hidden></section>
 <section class="page" id="p-reports" hidden></section>
 </main>
-</div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>
 const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const nf=new Intl.NumberFormat("fr-FR",{maximumFractionDigits:1}),ef=new Intl.NumberFormat("fr-FR",{style:"currency",currency:"EUR",maximumFractionDigits:0});
 const fmt=v=>nf.format(v),eur=v=>ef.format(v),sum=a=>a.reduce((s,v)=>s+v,0);
-const store={get(k,d){try{return JSON.parse(localStorage.getItem("optimeau:"+k))??d}catch{return d}},set(k,v){try{localStorage.setItem("optimeau:"+k,JSON.stringify(v))}catch{}}};
+const store={get(k,d){try{return JSON.parse(localStorage.getItem("optimeau2:"+k))??d}catch{return d}},set(k,v){try{localStorage.setItem("optimeau2:"+k,JSON.stringify(v))}catch{}}};
 
 /* Données fictives */
 const PER={oct:{l:"Octobre 2026",f:1,s:18400},sep:{l:"Septembre 2026",f:1.06,s:16200},aug:{l:"Août 2026",f:1.13,s:13900}};
@@ -132,11 +119,18 @@ const REF=[450,440,455,430,470,445,485,470,450,420,445,455,445,425,445];
 const SITES=[["Site industriel Nord","Lyon",4820,-12,"Normal"],["Site industriel Sud","Marseille",3650,-5,"À surveiller"],["Centre de production Est","Grenoble",2480,4,"Anomalie"],["Unité logistique Ouest","Nantes",1530,-9,"Normal"]];
 const METERS=[["OPT-001","Site industriel Nord","Production",1,"Aujourd’hui, 10:42"],["OPT-002","Site industriel Nord","Nettoyage",1,"Aujourd’hui, 10:41"],["OPT-003","Site industriel Nord","Sanitaires",1,"Aujourd’hui, 10:40"],["OPT-004","Site industriel Sud","Production",1,"Aujourd’hui, 10:42"],["OPT-005","Site industriel Sud","Nettoyage",0,"Hier, 18:20"],["OPT-006","Centre de production Est","Irrigation",1,"Aujourd’hui, 10:38"],["OPT-007","Centre de production Est","Production",1,"Aujourd’hui, 10:40"],["OPT-008","Unité logistique Ouest","Sanitaires",0,"Hier, 21:10"]];
 const A=[{id:1,t:"Fuite probable dans la zone de nettoyage",site:"Site industriel Nord",u:"Nettoyage",lv:"Élevée",save:6200},{id:2,t:"Surconsommation nocturne",site:"Centre de production Est",u:"Production",lv:"Moyenne",save:3900},{id:3,t:"Débit irrégulier du système d’irrigation",site:"Centre de production Est",u:"Irrigation",lv:"Moyenne",save:2700}];
-const USE=[["Production",52,"#5d8cff"],["Nettoyage",24,"#b8f442"],["Irrigation",15,"#ffab91"],["Sanitaires",9,"#a78bfa"]];
-const NAV=[["dashboard","▦","Tableau de bord","Vue consolidée de vos sites"],["sites","⌖","Sites et unités","Performances hydriques de vos installations"],["meters","◉","Compteurs connectés","État des équipements de mesure recensés"],["anomalies","⚠","Anomalies","Écarts détectés et actions correctives"],["savings","↗","Économies","Simulation des gains financiers"],["reports","▤","Rapports","Exports des indicateurs de démonstration"]];
+const USE=[["Production",52,"#0b5d4b"],["Nettoyage",24,"#1f7fb5"],["Irrigation",15,"#f2b33d"],["Sanitaires",9,"#8fb8a8"]];
+const NAV=[["dashboard","Tableau de bord","Vue consolidée de vos sites"],["env","Image environnementale","Comment la société peut percevoir l’entreprise sur l’eau"],["sites","Sites","Performances hydriques de vos installations"],["meters","Compteurs","État des équipements de mesure recensés"],["anomalies","Anomalies","Écarts détectés et actions correctives"],["savings","Économies","Simulation des gains financiers"],["reports","Rapports","Exports des indicateurs de démonstration"]];
+const LV=[
+ ["Mal vue par la société","L’entreprise est perçue comme négligente sur les enjeux environnementaux. Le risque de réputation est élevé.","#c2410c"],
+ ["En retard","Des efforts existent mais restent insuffisants face aux attentes du public et des partenaires.","#e0793a"],
+ ["Conforme","Les obligations de base sont respectées, sans démarche qui la distingue de ses concurrents.","#f2b33d"],
+ ["Engagée","Des objectifs et des résultats visibles montrent une vraie démarche de réduction.","#5ba37f"],
+ ["Exemple sur les enjeux environnementaux","L’entreprise est citée en référence : résultats mesurés, transparence et amélioration continue.","#0b5d4b"]];
+const CRIT=[["goal","Objectif de réduction de l’eau publié",15],["report","Rapport environnemental publié chaque année",15],["cert","Certification environnementale (par exemple ISO 14001)",10],["team","Équipes sensibilisées à l’économie d’eau",10]];
 
 /* État */
-const S={period:store.get("period","oct"),done:store.get("done",[]),sim:store.get("sim",{v:150000,p:4,r:10,c:5000}),page:"dashboard",filter:"all"};
+const S={period:store.get("period","oct"),done:store.get("done",[]),sim:store.get("sim",{v:150000,p:4,r:10,c:5000}),env:store.get("env",{goal:true,report:false,cert:false,team:true}),page:"dashboard",filter:"all"};
 if(!PER[S.period])S.period="oct";
 const CH={};
 const open=()=>A.filter(a=>!S.done.includes(a.id));
@@ -144,6 +138,12 @@ const act=()=>ACT.map(v=>Math.round(v*PER[S.period].f));
 const gap=()=>Math.round((sum(act())/sum(REF)-1)*100);
 const sg=v=>(v>0?"+":"")+v+" %";
 const lvc=l=>l==="Élevée"?"w":"m";
+function env(){
+  const g=gap(),perf=Math.round(30*Math.max(0,Math.min(1,(5-g)/15))),resp=Math.round(20*S.done.length/A.length);
+  const pts={perf,resp};CRIT.forEach(c=>pts[c[0]]=S.env[c[0]]?c[2]:0);
+  const score=sum(Object.values(pts)),idx=Math.min(4,Math.floor(score/20));
+  return{pts,score,idx,g};
+}
 
 function toast(m){const t=$("#toast");t.textContent=m;t.classList.add("show");clearTimeout(toast.t);toast.t=setTimeout(()=>t.classList.remove("show"),3000)}
 function chart(id,cfg){CH[id]?.destroy();delete CH[id];const c=$("#"+id);if(c&&window.Chart)CH[id]=new Chart(c,cfg)}
@@ -152,28 +152,29 @@ const notice=t=>`<p class="note">${t}</p>`;
 
 /* Pages */
 function dash(){
-  const o=open(),pot=sum(o.map(a=>a.save)),ok=METERS.filter(m=>m[3]).length,P=PER[S.period],d=gap();
+  const o=open(),pot=sum(o.map(a=>a.save)),ok=METERS.filter(m=>m[3]).length,P=PER[S.period],e=env();
   $("#p-dashboard").innerHTML=`
-  <div class="hero"><p>${o.length?`<b>${o.length} anomalie${o.length>1?"s":""} ouverte${o.length>1?"s":""}</b> représentent jusqu’à <b>${eur(pot)}</b> d’économies potentielles par an.`:"Aucune anomalie ouverte. La consommation suit la référence."}</p><button class="btn" data-go="anomalies">Voir les anomalies</button></div>
+  <div class="hero"><div><h2>${o.length?`${o.length} anomalie${o.length>1?"s":""} à traiter, jusqu’à ${eur(pot)} d’économies par an`:"Aucune anomalie ouverte : la consommation suit la référence"}</h2><p>Les compteurs déjà en place alimentent le suivi. Chaque action traitée améliore aussi l’image environnementale de l’entreprise.</p><p style="margin-top:20px"><button class="btn l" data-go="anomalies">Voir les anomalies</button></p></div>
+  <div class="lv"><span>Image environnementale</span><b>${LV[e.idx][0]}</b><span>Score illustratif : ${e.score} sur 100</span><button class="btn l" data-go="env">Voir le détail</button></div></div>
   <div class="kpis">
-    ${kpi("Consommation du mois",fmt(Math.round(12480*P.f))+" m³",sg(d)+" vs référence",d<=0?"":"w")}
+    ${kpi("Consommation du mois",fmt(Math.round(12480*P.f))+" m³",sg(e.g)+" vs référence",e.g<=0?"":"w")}
     ${kpi("Économies estimées",eur(P.s),"Depuis le début de l’année")}
     ${kpi("Anomalies actives",o.length,o.length?"À traiter":"Tout est traité",o.length?"w":"")}
     ${kpi("Compteurs connectés",ok+" / "+METERS.length,"Équipements existants")}
   </div>
   <div class="g2">
-    <article class="card"><h2>Consommation journalière et référence</h2><p class="d" id="peak"></p><div class="cv"><canvas id="c-line" role="img" aria-label="Consommation réelle comparée à la référence"></canvas></div></article>
-    <article class="card"><h2>Anomalies à traiter</h2><p class="d">Les écarts qui demandent une vérification.</p>
+    <article class="card"><h2 class="t">Consommation journalière et référence</h2><p class="d" id="peak"></p><div class="cv"><canvas id="c-line" role="img" aria-label="Consommation réelle comparée à la référence"></canvas></div></article>
+    <article class="card"><h2 class="t">Anomalies à traiter</h2><p class="d">Les écarts qui demandent une vérification.</p>
       ${o.length?o.map(a=>`<div class="it"><div>${esc(a.t)}<small>${esc(a.site)}</small></div><span class="tag ${lvc(a.lv)}">${a.lv}</span></div>`).join(""):'<p class="empty">Aucune anomalie ouverte.</p>'}
     </article>
   </div>
   <div class="g2 g2e">
-    <article class="card"><h2>Répartition par usage</h2><p class="d">Distribution indicative du mois.</p>
+    <article class="card"><h2 class="t">Répartition par usage</h2><p class="d">Distribution indicative du mois.</p>
       <div class="ut"><div class="cv s"><canvas id="c-use" role="img" aria-label="Répartition de la consommation par usage"></canvas></div>
       <div class="leg">${USE.map(u=>`<span><span><i style="background:${u[2]}"></i>${u[0]}</span><b>${u[1]} %</b></span>`).join("")}</div></div>
     </article>
-    <article class="card"><h2>Actions recommandées</h2><p class="d">Pistes d’optimisation et gains estimés.</p>
-      ${A.map(a=>`<div class="it"><div>${esc(a.t)}<small style="color:var(--ac)">+ ${eur(a.save)} / an</small></div><button class="sm" data-go="savings">Simuler</button></div>`).join("")}
+    <article class="card"><h2 class="t">Actions recommandées</h2><p class="d">Pistes d’optimisation et gains estimés.</p>
+      ${A.map(a=>`<div class="it"><div>${esc(a.t)}<small style="color:var(--pri);font-weight:600">+ ${eur(a.save)} / an</small></div><button class="sm" data-go="savings">Simuler</button></div>`).join("")}
     </article>
   </div>`;
 }
@@ -181,25 +182,43 @@ function drawDash(){
   const a=act(),pk=a.reduce((m,v,i)=>v-REF[i]>a[m]-REF[m]?i:m,0),ex=a[pk]-REF[pk];
   $("#peak").textContent=ex>0?`Pic anormal le ${LAB[pk]} : ${fmt(ex)} m³ au-dessus de la référence.`:"Aucun dépassement notable de la référence.";
   chart("c-line",{type:"line",data:{labels:LAB,datasets:[
-    {label:"Consommation réelle",data:a,borderColor:"#5d8cff",borderWidth:3,tension:.3,pointRadius:a.map((_,i)=>ex>0&&i===pk?6:0),pointBackgroundColor:"#b8f442",pointHoverRadius:5},
-    {label:"Référence",data:REF,borderColor:"#ffab91",borderWidth:2,borderDash:[6,5],tension:.3,pointRadius:0}]},
-    options:{responsive:true,maintainAspectRatio:false,interaction:{intersect:false,mode:"index"},plugins:{legend:{position:"bottom",labels:{usePointStyle:true,boxWidth:8}},tooltip:{callbacks:{label:c=>c.dataset.label+" : "+fmt(c.parsed.y)+" m³"}}},scales:{x:{grid:{display:false},border:{display:false},ticks:{maxTicksLimit:7}},y:{grid:{color:"rgba(154,175,194,.13)"},border:{display:false},ticks:{callback:v=>v+" m³"}}}}});
-  chart("c-use",{type:"doughnut",data:{labels:USE.map(u=>u[0]),datasets:[{data:USE.map(u=>u[1]),backgroundColor:USE.map(u=>u[2]),borderWidth:0}]},options:{responsive:true,maintainAspectRatio:false,cutout:"68%",plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.label+" : "+c.parsed+" %"}}}}});
+    {label:"Consommation réelle",data:a,borderColor:"#0b5d4b",borderWidth:3,tension:.3,pointRadius:a.map((_,i)=>ex>0&&i===pk?7:0),pointBackgroundColor:"#f2b33d",pointBorderColor:"#0c2b2a",pointBorderWidth:2},
+    {label:"Référence",data:REF,borderColor:"#c2410c",borderWidth:2,borderDash:[6,5],tension:.3,pointRadius:0}]},
+    options:{responsive:true,maintainAspectRatio:false,interaction:{intersect:false,mode:"index"},plugins:{legend:{position:"bottom",labels:{usePointStyle:true,boxWidth:8}},tooltip:{callbacks:{label:c=>c.dataset.label+" : "+fmt(c.parsed.y)+" m³"}}},scales:{x:{grid:{display:false},border:{display:false},ticks:{maxTicksLimit:7}},y:{grid:{color:"rgba(12,43,42,.08)"},border:{display:false},ticks:{callback:v=>v+" m³"}}}}});
+  chart("c-use",{type:"doughnut",data:{labels:USE.map(u=>u[0]),datasets:[{data:USE.map(u=>u[1]),backgroundColor:USE.map(u=>u[2]),borderWidth:2,borderColor:"#fff"}]},options:{responsive:true,maintainAspectRatio:false,cutout:"64%",plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.label+" : "+c.parsed+" %"}}}}});
+}
+function envPage(){
+  const e=env(),L=LV[e.idx],nx=LV[e.idx+1],need=(e.idx+1)*20-e.score;
+  const rows=[["perf","Consommation d’eau face à la référence ("+sg(e.g)+")",30],["resp","Part des anomalies traitées",20]];
+  const miss=CRIT.filter(c=>!S.env[c[0]]).sort((a,b)=>b[2]-a[2]);
+  $("#p-env").innerHTML=`${notice("Indicateur interne et illustratif construit pour cette démonstration. Ce n’est pas une notation officielle ni une mesure réelle de l’opinion publique.")}
+  <article class="card" style="margin-bottom:20px"><h2 class="t">Où se situe l’entreprise ?</h2><p class="d">De « mal vue par la société » à « exemple sur les enjeux environnementaux ».</p>
+  <div class="scale" role="img" aria-label="Échelle d’image environnementale : niveau ${L[0]}, score ${e.score} sur 100">${LV.map(l=>`<i style="background:${l[2]}"></i>`).join("")}<div class="mk" style="left:${Math.max(3,Math.min(97,e.score))}%">${e.score}</div></div>
+  <div class="sl">${LV.map((l,i)=>`<span class="${i===e.idx?"on":""}">${l[0]}</span>`).join("")}</div>
+  <div style="margin-top:26px"><h3 style="font-size:24px;color:${L[2]===""?"":"var(--ink)"}">${L[0]}</h3><p class="d" style="margin-bottom:0;max-width:70ch">${L[1]}</p></div></article>
+  <div class="g2 g2e"><article class="card"><h2 class="t">Critères de l’évaluation</h2><p class="d">Cochez les actions pour voir le niveau évoluer.</p>
+  ${rows.map(r=>`<div class="cr"><span>${r[1]}</span><b>${e.pts[r[0]]} / ${r[2]}</b><div class="pb"><i style="width:${e.pts[r[0]]/r[2]*100}%"></i></div></div>`).join("")}
+  ${CRIT.map(c=>`<div class="cr"><label><input type="checkbox" data-env="${c[0]}" ${S.env[c[0]]?"checked":""}>${c[1]}</label><b>${e.pts[c[0]]} / ${c[2]}</b><div class="pb"><i style="width:${e.pts[c[0]]/c[2]*100}%"></i></div></div>`).join("")}</article>
+  <article class="card"><h2 class="t">Pour progresser</h2>
+  ${nx?`<p class="d">Il manque <b>${need} point${need>1?"s":""}</b> pour atteindre le niveau « ${nx[0]} ».</p>`:`<p class="d">Niveau maximal atteint. Il reste à maintenir ces résultats dans la durée.</p>`}
+  ${open().length?`<div class="it"><div>Traiter les ${open().length} anomalies ouvertes<small>Fait monter le score de réactivité</small></div><button class="sm" data-go="anomalies">Ouvrir</button></div>`:""}
+  ${miss.map(c=>`<div class="it"><div>${c[1]}<small>+ ${c[2]} points</small></div></div>`).join("")}
+  ${!miss.length&&!open().length?'<p class="empty">Toutes les actions de la démonstration sont réalisées.</p>':""}</article></div>`;
 }
 function table(id,title,desc,heads,ph){
-  $("#p-"+id).innerHTML=`<article class="card"><div class="bar"><div><h2>${title}</h2><p class="d" style="margin:6px 0 0">${desc}</p></div><input class="inp" style="max-width:300px" type="search" id="q-${id}" placeholder="${ph}" aria-label="${ph}"></div><div class="tw"><table><thead><tr>${heads.map(h=>`<th scope="col">${h}</th>`).join("")}</tr></thead><tbody id="t-${id}"></tbody></table></div></article>`;
+  $("#p-"+id).innerHTML=`<article class="card"><div class="bar"><div><h2 class="t">${title}</h2><p class="d" style="margin:6px 0 0">${desc}</p></div><input class="inp" style="max-width:300px" type="search" id="q-${id}" placeholder="${ph}" aria-label="${ph}"></div><div class="tw"><table><thead><tr>${heads.map(h=>`<th scope="col">${h}</th>`).join("")}</tr></thead><tbody id="t-${id}"></tbody></table></div></article>`;
 }
 function rows(id,list,row){
   const q=($("#q-"+id)?.value||"").toLowerCase().trim(),f=list.filter(r=>r.join(" ").toLowerCase().includes(q));
   $("#t-"+id).innerHTML=f.length?f.map(row).join(""):`<tr><td colspan="6" class="empty">Aucun résultat pour cette recherche.</td></tr>`;
 }
-const siteRow=s=>`<tr><td><b>${esc(s[0])}</b></td><td>${esc(s[1])}</td><td>${fmt(s[2])} m³</td><td style="color:${s[3]>0?"var(--or)":"var(--ac)"}">${sg(s[3])}</td><td><span class="tag ${s[4]==="Normal"?"":s[4]==="Anomalie"?"w":"m"}">${s[4]}</span></td></tr>`;
+const siteRow=s=>`<tr><td><b>${esc(s[0])}</b></td><td>${esc(s[1])}</td><td>${fmt(s[2])} m³</td><td style="color:${s[3]>0?"var(--co)":"var(--pri)"};font-weight:600">${sg(s[3])}</td><td><span class="tag ${s[4]==="Normal"?"":s[4]==="Anomalie"?"w":"m"}">${s[4]}</span></td></tr>`;
 const meterRow=m=>`<tr><td><b>${m[0]}</b></td><td>${esc(m[1])}</td><td>${m[2]}</td><td><span class="tag ${m[3]?"":"w"}">${m[3]?"Connecté":"Indisponible"}</span></td><td style="color:var(--mu)">${m[4]}</td></tr>`;
 function anom(){
   const o=open(),list=A.filter(a=>S.filter==="all"||(S.filter==="open")===!S.done.includes(a.id));
   $("#p-anomalies").innerHTML=`${notice("Anomalies simulées pour illustrer le fonctionnement envisagé. Elles ne viennent pas de capteurs réels.")}
   <div class="kpis">${kpi("Anomalies ouvertes",o.length,"À examiner",o.length?"w":"")}${kpi("Priorité élevée",o.filter(a=>a.lv==="Élevée").length,"Intervention prioritaire","w")}${kpi("Économies potentielles",eur(sum(o.map(a=>a.save))),"Estimation annuelle")}${kpi("Actions traitées",S.done.length,"Dans cette démonstration","n")}</div>
-  <article class="card"><div class="bar"><div><h2>Liste des anomalies</h2><p class="d" style="margin:6px 0 0">Marquez une anomalie comme traitée pour tester l’interface.</p></div>
+  <article class="card"><div class="bar"><div><h2 class="t">Liste des anomalies</h2><p class="d" style="margin:6px 0 0">Marquez une anomalie comme traitée pour tester l’interface.</p></div>
   <select class="sel" id="af" aria-label="Filtrer les anomalies"><option value="all">Toutes</option><option value="open">À traiter</option><option value="done">Traitées</option></select></div>
   ${list.length?list.map(a=>{const d=S.done.includes(a.id);return `<div class="it"><div>${esc(a.t)}<small>${esc(a.site)}, ${a.u}. Économie potentielle : ${eur(a.save)} / an</small><span class="tag ${d?"":lvc(a.lv)}" style="margin-top:8px">${d?"Traitée":a.lv}</span></div><button class="sm" data-tg="${a.id}">${d?"Rouvrir":"Marquer comme traitée"}</button></div>`}).join(""):'<p class="empty">Aucune anomalie dans cette catégorie.</p>'}</article>`;
   $("#af").value=S.filter;
@@ -208,15 +227,15 @@ function savings(){
   CH["c-sav"]?.destroy();delete CH["c-sav"];
   const s=S.sim;
   $("#p-savings").innerHTML=`${notice("Estimations théoriques, sans garantie d’économies réelles. Les investissements et contraintes techniques ne sont pas intégrés automatiquement.")}
-  <div class="g2"><article class="card"><h2>Paramètres de simulation</h2><p class="d">Modifiez les hypothèses : les résultats se recalculent seuls.</p>
+  <div class="g2"><article class="card"><h2 class="t">Paramètres de simulation</h2><p class="d">Modifiez les hypothèses : les résultats se recalculent seuls.</p>
   <div class="fg"><label for="s-v">Consommation annuelle actuelle (m³)</label><input class="inp" type="number" id="s-v" value="${s.v}" min="0" step="100"></div>
   <div class="fg"><label for="s-p">Coût total de l’eau par m³ (€)</label><input class="inp" type="number" id="s-p" value="${s.p}" min="0" step="0.1"><small>Eau et assainissement, selon votre facture.</small></div>
-  <div class="fg"><label for="s-r">Réduction envisagée : <b id="s-rl" style="color:var(--ac)"></b></label><input class="inp" type="range" id="s-r" value="${s.r}" min="0" max="50" style="accent-color:var(--ac);padding:0"></div>
+  <div class="fg"><label for="s-r">Réduction envisagée : <b id="s-rl" style="color:var(--pri)"></b></label><input class="inp" type="range" id="s-r" value="${s.r}" min="0" max="50" style="accent-color:var(--pri);padding:0"></div>
   <div class="fg"><label for="s-c">Coût annuel estimé des actions (€)</label><input class="inp" type="number" id="s-c" value="${s.c}" min="0" step="100"></div>
   <button class="btn ghost" id="s-reset">Rétablir les valeurs d’exemple</button></article>
-  <article class="card"><h2>Résultats</h2><p class="d">Calculés d’après vos hypothèses.</p>
+  <article class="card"><h2 class="t">Résultats</h2><p class="d">Calculés d’après vos hypothèses.</p>
   ${[["w","Volume d’eau économisé par an"],["g","Économies brutes annuelles"],["n","Gain annuel après coûts estimés"],["r","Consommation annuelle après réduction"]].map(r=>`<div class="res"><p class="l">${r[1]}</p><p class="v" id="o-${r[0]}"></p></div>`).join("")}</article></div>
-  <article class="card"><h2>Comparaison de scénarios</h2><p class="d">Gain annuel après coûts selon le taux de réduction.</p><div class="cv"><canvas id="c-sav" role="img" aria-label="Gain annuel selon le taux de réduction"></canvas></div></article>`;
+  <article class="card"><h2 class="t">Comparaison de scénarios</h2><p class="d">Gain annuel après coûts selon le taux de réduction.</p><div class="cv"><canvas id="c-sav" role="img" aria-label="Gain annuel selon le taux de réduction"></canvas></div></article>`;
   calc();
 }
 function calc(){
@@ -226,12 +245,12 @@ function calc(){
   $("#s-rl").textContent=s.r+" %";$("#o-w").textContent=fmt(w)+" m³";$("#o-g").textContent=eur(gr);$("#o-n").textContent=eur(gr-s.c);$("#o-r").textContent=fmt(s.v-w)+" m³";
   const rates=[5,10,15,20,30],vals=rates.map(r=>s.v*r/100*s.p-s.c);
   if(CH["c-sav"]){CH["c-sav"].data.datasets[0].data=vals;CH["c-sav"].update()}
-  else chart("c-sav",{type:"bar",data:{labels:rates.map(r=>r+" %"),datasets:[{data:vals,backgroundColor:"#5d8cff",borderRadius:8,maxBarThickness:56}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>eur(c.parsed.y)}}},scales:{x:{grid:{display:false},border:{display:false}},y:{grid:{color:"rgba(154,175,194,.13)"},border:{display:false},ticks:{callback:v=>fmt(v)+" €"}}}}});
+  else chart("c-sav",{type:"bar",data:{labels:rates.map(r=>r+" %"),datasets:[{data:vals,backgroundColor:"#0b5d4b",borderRadius:8,maxBarThickness:56}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>eur(c.parsed.y)}}},scales:{x:{grid:{display:false},border:{display:false}},y:{grid:{color:"rgba(12,43,42,.08)"},border:{display:false},ticks:{callback:v=>fmt(v)+" €"}}}}});
 }
 function reports(){
   const r=[["consumption","Rapport de consommation","Volumes par site, écart à la référence et statut."],["savings","Rapport d’économies","Hypothèses de simulation et gains estimés."],["anomalies","Rapport d’anomalies","Anomalies simulées, priorités et statuts."]];
-  $("#p-reports").innerHTML=`${notice("Les rapports utilisent les données fictives du prototype. Ce ne sont pas des rapports d’audit.")}<div class="rg">${r.map(x=>`<article class="rc"><h2>${x[1]}</h2><p>${x[2]}</p><button class="btn" data-exp="${x[0]}">Télécharger en CSV</button></article>`).join("")}</div>
-  <article class="card" style="margin-top:22px"><h2>Rapport général</h2><p class="d">Un seul fichier CSV regroupant les principaux indicateurs.</p><button class="btn" data-exp="general">Télécharger le rapport général</button></article>`;
+  $("#p-reports").innerHTML=`${notice("Les rapports utilisent les données fictives du prototype. Ce ne sont pas des rapports d’audit.")}<div class="rg">${r.map(x=>`<article class="rc"><h2 class="t">${x[1]}</h2><p>${x[2]}</p><button class="btn" data-exp="${x[0]}">Télécharger en CSV</button></article>`).join("")}</div>
+  <article class="card" style="margin-top:20px"><h2 class="t">Rapport général</h2><p class="d">Un seul fichier CSV regroupant les principaux indicateurs, dont l’image environnementale.</p><button class="btn" data-exp="general">Télécharger le rapport général</button></article>`;
 }
 
 /* Export CSV */
@@ -245,72 +264,68 @@ function exp(k){
   const hd=t=>[["O’ptimeau : "+t],["Données fictives de démonstration, "+PER[S.period].l],[]];
   const sites=[["Site","Localisation","Consommation (m3)","Écart (%)","Statut"],...SITES.map(s=>s.slice())];
   const an=[["Anomalie","Site","Usage","Priorité","Économie potentielle (EUR/an)","Statut"],...A.map(a=>[a.t,a.site,a.u,a.lv,a.save,S.done.includes(a.id)?"Traitée":"À traiter"])];
-  const s=S.sim,w=s.v*s.r/100;
+  const s=S.sim,w=s.v*s.r/100,e=env();
   const sv=[["Indicateur","Valeur"],["Consommation annuelle (m3)",s.v],["Prix de l’eau (EUR/m3)",s.p],["Réduction (%)",s.r],["Volume économisé (m3)",w],["Économies brutes (EUR)",w*s.p],["Coûts estimés (EUR)",s.c],["Gain après coûts (EUR)",w*s.p-s.c]];
   if(k==="consumption")csv(k,[...hd("Consommation"),...sites]);
   else if(k==="savings")csv(k,[...hd("Simulation d’économies"),...sv]);
   else if(k==="anomalies")csv(k,[...hd("Anomalies"),...an]);
-  else csv("rapport_general",[...hd("Rapport général"),["Indicateur","Valeur"],["Consommation du mois (m3)",Math.round(12480*PER[S.period].f)],["Économies cumulées (EUR)",PER[S.period].s],["Anomalies ouvertes",open().length],["Compteurs connectés",METERS.filter(m=>m[3]).length+" / "+METERS.length],[],...sites,[],...an]);
+  else csv("rapport_general",[...hd("Rapport général"),["Indicateur","Valeur"],["Consommation du mois (m3)",Math.round(12480*PER[S.period].f)],["Économies cumulées (EUR)",PER[S.period].s],["Anomalies ouvertes",open().length],["Compteurs connectés",METERS.filter(m=>m[3]).length+" / "+METERS.length],["Image environnementale (illustratif)",LV[e.idx][0]+", "+e.score+"/100"],[],...sites,[],...an]);
 }
 
 /* Navigation et rendu */
-function badge(){const n=$("#nav .n");if(n)n.textContent=open().length}
 function nav(){
-  $("#nav").innerHTML=NAV.map(n=>`<button data-p="${n[0]}"><i>${n[1]}</i>${n[2]}${n[0]==="anomalies"?`<span class="n">${open().length}</span>`:""}</button>`).join("");
+  $("#nav").innerHTML=NAV.map(n=>`<button data-p="${n[0]}">${n[1]}${n[0]==="anomalies"&&open().length?` (${open().length})`:""}</button>`).join("");
 }
 function go(p,focus){
   if(!NAV.some(n=>n[0]===p))p="dashboard";
   S.page=p;
   $$(".page").forEach(s=>s.hidden=s.id!=="p-"+p);
-  $$("#nav button").forEach(b=>{const on=b.dataset.p===p;b.classList.toggle("on",on);on?b.setAttribute("aria-current","page"):b.removeAttribute("aria-current")});
-  const n=NAV.find(x=>x[0]===p);$("#h1").textContent=n[2];$("#sub").textContent=n[3]+" · "+PER[S.period].l;
-  document.title=n[2]+" | O’ptimeau";
-  $("#sb").classList.remove("open");$("#menu").setAttribute("aria-expanded","false");
+  $$("#nav button").forEach(b=>{b.dataset.p===p?b.setAttribute("aria-current","page"):b.removeAttribute("aria-current")});
+  const n=NAV.find(x=>x[0]===p);$("#h1").textContent=n[1];$("#sub").textContent=n[2]+" · "+PER[S.period].l;
+  document.title=n[1]+" | O’ptimeau";
   try{if(location.hash!=="#"+p)history.pushState(null,"","#"+p)}catch{}
   if(p==="dashboard")drawDash();
   if(p==="savings")calc();
   if(focus){window.scrollTo({top:0});$("#h1").focus({preventScroll:true})}
 }
-function renderAll(){
-  dash();rows("sites",SITES,siteRow);rows("meters",METERS,meterRow);anom();reports();nav();go(S.page);
-}
+function renderAll(){dash();envPage();rows("sites",SITES,siteRow);rows("meters",METERS,meterRow);anom();reports();nav();go(S.page)}
 
 /* Événements */
 document.addEventListener("click",e=>{
-  const t=e.target.closest("[data-p],[data-go],[data-tg],[data-exp]");if(!t)return;
+  const t=e.target.closest("[data-p],[data-go],[data-tg],[data-exp],#s-reset");if(!t)return;
+  if(t.id==="s-reset"){S.sim={v:150000,p:4,r:10,c:5000};savings();toast("Valeurs d’exemple rétablies.");return}
   if(t.dataset.p||t.dataset.go)go(t.dataset.p||t.dataset.go,true);
   if(t.dataset.exp)exp(t.dataset.exp);
   if(t.dataset.tg){
     const id=+t.dataset.tg,i=S.done.indexOf(id);
     i<0?S.done.push(id):S.done.splice(i,1);
-    store.set("done",S.done);dash();anom();nav();go(S.page);
+    store.set("done",S.done);dash();envPage();anom();nav();go(S.page);
     toast(i<0?"Anomalie marquée comme traitée.":"Anomalie rouverte.");
   }
 });
 document.addEventListener("input",e=>{
   const id=e.target.id;
-  if(id&&id.startsWith("s-")&&id!=="s-reset")calc();
+  if(id&&id.startsWith("s-"))calc();
   if(id==="q-sites")rows("sites",SITES,siteRow);
   if(id==="q-meters")rows("meters",METERS,meterRow);
 });
-document.addEventListener("change",e=>{if(e.target.id==="af"){S.filter=e.target.value;anom()}});
-document.addEventListener("click",e=>{if(e.target.id==="s-reset"){S.sim={v:150000,p:4,r:10,c:5000};savings();toast("Valeurs d’exemple rétablies.")}});
+document.addEventListener("change",e=>{
+  if(e.target.id==="af"){S.filter=e.target.value;anom()}
+  if(e.target.dataset.env){S.env[e.target.dataset.env]=e.target.checked;store.set("env",S.env);envPage();dash();const c=$(`[data-env="${e.target.dataset.env}"]`);c&&c.focus()}
+});
 $("#period").innerHTML=Object.entries(PER).map(([k,v])=>`<option value="${k}">${v.l}</option>`).join("");
 $("#period").value=S.period;
-$("#period").addEventListener("change",e=>{S.period=e.target.value;store.set("period",S.period);dash();go(S.page);toast("Période : "+PER[S.period].l+". Données fictives.")});
-$("#menu").addEventListener("click",()=>{const o=$("#sb").classList.toggle("open");$("#menu").setAttribute("aria-expanded",o)});
-$("#scrim").addEventListener("click",()=>$("#sb").classList.remove("open"));
-document.addEventListener("keydown",e=>{if(e.key==="Escape")$("#sb").classList.remove("open")});
+$("#period").addEventListener("change",e=>{S.period=e.target.value;store.set("period",S.period);dash();envPage();go(S.page);toast("Période : "+PER[S.period].l+". Données fictives.")});
 window.addEventListener("popstate",()=>go(location.hash.slice(1)));
 
 function start(){
-  Chart.defaults.color="#9aafc2";Chart.defaults.font.family="Inter, sans-serif";Chart.defaults.font.size=11;
+  Chart.defaults.color="#4b6361";Chart.defaults.font.family="Figtree, sans-serif";Chart.defaults.font.size=12;
   table("sites","Vue des sites industriels","Consommation et écart de référence par site.",["Site","Localisation","Consommation","Écart","Statut"],"Rechercher un site");
   table("meters","Parc de compteurs","État et affectation des équipements.",["Identifiant","Site","Usage","État","Dernière donnée"],"Rechercher un compteur");
   savings();S.page=NAV.some(n=>n[0]===location.hash.slice(1))?location.hash.slice(1):"dashboard";
   renderAll();
 }
-window.Chart?start():window.addEventListener("load",()=>window.Chart?start():(start.err=1,toast("Impossible de charger les graphiques. Vérifiez la connexion.")));
+window.Chart?start():window.addEventListener("load",()=>window.Chart?start():toast("Impossible de charger les graphiques. Vérifiez la connexion."));
 </script>
 </body>
 </html>
